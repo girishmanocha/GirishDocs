@@ -1,0 +1,56 @@
+package page;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import base.Base;
+
+public class LoginPage extends Base {
+
+	public void user_enter_valid_userid_and_password() {
+		WebElement clkSign = driver.findElement(By.xpath("//button[@aria-label='Toggle My Account Menu']"));
+		clkSign.click();
+		WebElement username = driver.findElement(By.xpath("//input[@autocomplete='email']"));
+		username.sendKeys(prop.getProperty("username"));
+		WebElement password = driver.findElement(By.xpath("//input[@autocomplete='current-password']"));
+		password.sendKeys(prop.getProperty("PASSWORD"));
+	}
+	
+	public void user_enter_invalid_userid_and_password() {
+		WebElement clkSign = driver.findElement(By.xpath("//button[@aria-label='Toggle My Account Menu']"));
+		clkSign.click();
+		WebElement username = driver.findElement(By.xpath("//input[@autocomplete='email']"));
+		username.sendKeys(prop.getProperty("Invalid_user"));
+		WebElement password = driver.findElement(By.xpath("//input[@autocomplete='current-password']"));
+		password.sendKeys(prop.getProperty("Invalid_pw"));
+	}
+
+	public void user_click_on_submit_button() {
+		WebElement submit = driver.findElement( 
+				By.xpath("//button[@type='submit']") );
+		try { submit.click();	
+			
+		} catch (Exception e) {
+			Executerclick(submit);
+		}
+
+	} 
+
+	public void validate_user_navigate_to_home_page() {
+		//WebElement myaccout = driver.findElement(By.xpath("(//a[@class='accountMenuItems-link-2R1'])[1]"));
+		//validation(true, myaccout);
+		WebElement logout = driver.findElement(By.xpath("//button[@class='accountMenuItems-signOut-39Q accountMenuItems-link-2R1']"));
+		try {
+			logout.click();
+		} catch (Exception e) {
+			Executerclick(logout);
+		}
+		driver.quit();
+	}	
+	public void validate_user_should_get_error_massege() {
+		WebElement errror = driver.findElement(By.xpath("//span[@class='errorMessage-errorMessage-3sE']"));
+		
+		validation(true, errror); 
+		driver.quit();
+	} 
+	
+}

@@ -1,0 +1,20 @@
+Feature: Login Functionality 
+
+
+
+@Reg
+Scenario: Verify login feature With Valid credential 
+	Given User Launch Site URL 
+	When User Enter valid Userid and Password 
+	And User click on Submit button 
+	Then Validate user Navigate to Home Page 
+	
+@Reg
+Scenario: Verify login feature With InValid credential 
+	Given User Launch Site URL 
+	When User Enter Invalid Userid and Password 
+	And User click on Submit button 
+	Then Validate user Should Get Error massege 
+	
+	
+	
